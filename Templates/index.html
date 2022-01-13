@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='calculator.css') }}"/>
+    <style>
+body {
+  background-color:black;
+  font:monospace;
+}
+</style>
+</head>
+<body>
+
+    <div class="intro">
+        <h1 style="color:snow;">BASIC CALCULATOR</h1>
+
+    </div>
+    <p style="color: snow;">With two inputs...</p>
+    <form method="post" action="{{ url_for('operation_result') }}" id="calculator_form">
+       <p> <label style="color: wheat;" for="Input1">Input 1:</label>
+        <input type="text" name="Input1" id="Input1">
+        <br/></p>
+        <p>
+        <label style="color: wheat;" for="Input2">Input 2:</label>
+        <input type="Input2" name="Input2" id="Input2">
+        <br><br/>
+        </p> 
+        <label style="color: wheat;" for="operation">Operation</label>
+        <select id="operation" name="operation">
+            <option value="+">Addition</option>
+            <option value="-">Subtraction</option>
+            <option value="/">Division</option>
+            <option value="*">Multiplication</option>
+            <option value="%">Modulus</option>
+        </select>
+        <br><br/>
+        <input type="submit" value="Submit"/>
+        <br><br>
+    </form>
+    {% if calculation_success == True %}
+        <br/>
+        <p style="color:white;">The calculation for {{input1}} {{operation}} {{input2}} is: {{result}}</p>
+    {% endif %}
+    {% if calculation_success == False %}
+        <br/>
+        <p style="color: snow;">{{error}}</p>
+        <p style="color: snow;">{{input1}} {{operation}} {{input2}} = "{{result}}"</p>
+    {% endif %}
+</body>
+</html>
